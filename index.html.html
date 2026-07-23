@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayan Ali Sheep Casing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 8px 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #1e293b;
+        }
+        .top-info span {
+            margin-right: 15px;
+        }
+        .top-info i {
+            color: #38bdf8;
+            margin-right: 5px;
+        }
+        .top-social a {
+            color: #94a3b8;
+            margin-left: 12px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .top-social a:hover {
+            color: #38bdf8;
+        }
+
+        /* Header */
+        header {
+            background: #1e293b;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 75px;
+            margin-right: 12px;
+            object-fit: contain;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        /* Navigation Links Spacing Fix */
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* Google Translate */
+        #google_translate_element select {
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid #38bdf8;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 130px 20px;
+        }
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            color: #e2e8f0;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .btn {
+            background: #0284c7;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover {
+            background: #0369a1;
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: #16a34a;
+        }
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        /* Animation */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+        .product-card-body {
+            padding: 22px;
+        }
+        .product-card-body h4 {
+            font-size: 1.4rem;
+            color: #0284c7;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .product-card-body p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .specs-list {
+            list-style: none;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 12px;
+        }
+        .specs-list li {
+            font-size: 0.88rem;
+            color: #334155;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+        .specs-list li i {
+            color: #16a34a;
+            margin-right: 8px;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 220px;
+            background: #f1f5f9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        .gallery-overlay h5 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+        .gallery-overlay p {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+        }
+
+        /* Inquiry Form */
+        .inquiry-section {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 50px 30px;
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            border-color: #0284c7;
+        }
+        textarea.form-control {
+            resize: vertical;
+            height: 120px;
+        }
+
+        /* Floating WhatsApp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #0284c7;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #38bdf8;
+        }
+        .footer-socials a {
+            color: #fff;
+            background: #1e293b;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        .footer-socials a:hover {
+            background: #0284c7;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1e293b;
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fa-solid fa-envelope"></i>ayansheepcasings@gmail.com</span>
+            <span><i class="fa-solid fa-globe"></i> Worldwide Export & Supply</span>
+        </div>
+        <div class="top-social">
+            <a href="https://wa.me/923200677062" target="_blank" title="WhatsApp Business"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61591684325161" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/ayanaliayanali97/?hl=en" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ayan-sheep-casings-122254414/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="im/2.png" alt="Ayan Ali Sheep Casing Logo">
+            <h1>Ayan Ali Sheep Casing</h1>
+        </div>
+        <div class="nav-right">
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#products">Casings Range</a>
+                <a href="#gallery">Process</a>
+                <a href="#inquiry">Inquiry Form</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div id="google_translate_element"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero animate-up" id="home">
+        <h2>Global Processors & Exporters of Natural Casings</h2>
+        <p>Specializing in Premium Grade Natural Sheep, Goat, and Beef Casings. Precision Calibrated, Hygienically Selected & Packed for Worldwide Sausage Manufacturers.</p>
+        <div class="btn-group">
+            <a href="#products" class="btn">View Product Range</a>
+            <a href="#inquiry" class="btn btn-success"><i class="fa-solid fa-paper-plane"></i> Send Inquiry</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section animate-up" id="about">
+        <h3 class="section-title">Welcome to Ayan Ali Sheep Casing</h3>
+        <p class="section-subtitle">Ayan Ali Sheep Casing is a trusted name in the global natural casings export industry. We excel in processing high-quality natural sheep, goat, and beef casings under strict international hygiene protocols. Every casing is carefully selected, measure-calibrated, salted, and tubed to meet the exacting standards of our buyers worldwide.</p>
+    </section>
+
+    <!-- 3 Animal Categories (Sheep, Goat, Beef) -->
+    <section class="section animate-up" id="products" style="background: #f1f5f9; border-radius: 15px; padding: 60px 20px;">
+        <h3 class="section-title">Our Premium Natural Casings</h3>
+        <p class="section-subtitle">We export high-grade natural casings sourced strictly from Sheep, Goat & Beef.</p>
+        
+        <div class="products-grid">
+            <!-- Sheep Casing -->
+            <div class="product-card">
+                <img src="im/sh.webp" alt="Natural Sheep Casing">
+                <div class="product-card-body">
+                    <h4>Sheep Casings <span><i class="fa-solid fa-shield-halved" style="color: #0284c7;"></i></span></h4>
+                    <p>Highly elastic and tender natural sheep casings, perfect for fresh, cooked, and dry sausages.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-check"></i> <strong>Calibers:</strong> 14/16, 16/18, 18/20, 20/22, 22/24, 24/26 mm</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Quality Grades:</strong> Grade AA, AB, BC</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Packaging:</strong> Hard Tubes, Soft Tubes & Salted Hanks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Goat Casing -->
+            <div class="product-card">
+                <img src="im/go.jpg" alt="Natural Goat Casing">
+                <div class="product-card-body">
+                    <h4>Goat Casings <span><i class="fa-solid fa-shield-halved" style="color: #0284c7;"></i></span></h4>
+                    <p>Renowned for exceptional wall strength and uniform diameter, suitable for high-speed filling.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-check"></i> <strong>Calibers:</strong> 14/16, 16/18, 18/20, 20/22, 22/24, 24/26 mm</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Strength:</strong> High Burst Pressure Resistance</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Packaging:</strong> Vacuum Sealed Barrels & Salted Rings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Beef Casing -->
+            <div class="product-card">
+                <img src="im/be.webp" alt="Natural Beef Casing">
+                <div class="product-card-body">
+                    <h4>Beef Casings <span><i class="fa-solid fa-shield-halved" style="color: #0284c7;"></i></span></h4>
+                    <p>Heavy-duty natural beef casings (Rounds, Middles, and Bungs) for thick, cured sausages and salamis.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-check"></i> <strong>Types:</strong> Beef Rounds All Calibers (38/43 mm), Middles</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Usage:</strong> Salami, Bologna, Cooked Sausages</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Packaging:</strong> Export Standard Casks & Cans</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processing Gallery Section -->
+    <section class="section animate-up" id="gallery">
+        <h3 class="section-title">Processing & Quality Control Showcase</h3>
+        <p class="section-subtitle">A step-by-step export standard preparation ensures cleanliness and precise casing thickness.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80" alt="Livestock Selection">
+                <div class="gallery-overlay">
+                    <h5>1. Livestock Selection</h5>
+                    <p>Sourced from certified organic pastures.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="im/s.jpg" alt="Hygienic Cleaning">
+                <div class="gallery-overlay">
+                    <h5>2. Hygienic Cleaning</h5>
+                    <p>Thorough washing under strict water control.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="im/8.jpg" alt="Precision Calibrating">
+                <div class="gallery-overlay">
+                    <h5>3. Precision Calibrating</h5>
+                    <p>Exact diameter measurement for filling.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="im/o.jpg" alt="Tubing & Ringing">
+                <div class="gallery-overlay">
+                    <h5>4. Tubing & Ringing</h5>
+                    <p>Soft and hard plastic tubes for production.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="im/p.png" alt="Natural Salting">
+                <div class="gallery-overlay">
+                    <h5>5. Natural Salting</h5>
+                    <p>Refined salt preservation for global transit.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="im/e.avif" alt="Export Packaging">
+                <div class="gallery-overlay">
+                    <h5>6. Export Packaging</h5>
+                    <p>Sealed casks ready for global shipment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry / Message Send Box Section -->
+    <section class="section animate-up" id="inquiry">
+        <h3 class="section-title">Send Inquiry / Order Request</h3>
+        <p class="section-subtitle">Fill out the form below to request samples, pricing, or place an export order.</p>
+        
+        <div class="inquiry-section">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name / Company Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your full name or company" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="product">Select Product / Casing Type</label>
+                    <select id="product" class="form-control">
+                        <option value="Sheep Casing">Natural Sheep Casing</option>
+                        <option value="Goat Casing">Natural Goat Casing</option>
+                        <option value="Beef Casing">Natural Beef Casing</option>
+                        <option value="Mixed">Mixed Products / Sample Request</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message / Calibers Required</label>
+                    <textarea id="message" class="form-control" placeholder="Mention required calibers, quantity, destination port, etc." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success" style="width: 100%; justify-content: center; padding: 14px;">Send Message / Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/923200677062" class="floating-whatsapp" target="_blank" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Ayan Ali Sheep Casing</h4>
+                <p>Premier processor and international exporter of natural sheep, goat, and beef casings.</p>
+                <div class="footer-socials" style="margin-top: 15px;">
+                    <a href="https://wa.me/923200677062/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61591684325161"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/ayanaliayanali97/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/ayan-sheep-casings-122254414/"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Product Range</h4>
+                <ul class="footer-links">
+                    <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Natural Sheep Casings</a></li>
+                    <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Natural Goat Casings</a></li>
+                    <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Beef Rounds & Middles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Export Contact</h4>
+                <p><i class="fa-solid fa-envelope" style="color: #38bdf8; margin-right: 8px;"></i>ayansheepcasings@gmail.com</p>
+                <p style="margin-top: 8px;"><i class="fa-solid fa-phone" style="color: #38bdf8; margin-right: 8px;"></i> +92 320 0677062</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ayan Ali Sheep Casing. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Scroll Animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const elements = document.querySelectorAll('.animate-up');
+            function checkScroll() {
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect().top;
+                    const screenHeight = window.innerHeight - 80;
+                    if (position < screenHeight) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        });
+    </script>
+
+</body>
+</html>
